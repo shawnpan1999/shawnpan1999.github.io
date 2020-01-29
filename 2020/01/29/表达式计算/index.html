@@ -77,12 +77,14 @@
 
 
 
-<meta name="description" content="学习使我快乐">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Shawn Pan">
-<meta property="og:url" content="https://shawnpan1999.github.io/sundries/index.html">
+<meta name="description" content="问题描述 　　输入一个只包含加减乖除和括号的合法表达式，求表达式的值。其中除表示整除。 输入格式 　　输入一行，包含一个表达式。 输出格式 　　输出这个表达式的值。 样例输入 ​        1-2+3*(4-5) 样例输出 ​        -4 数据规模和约定 　　表达式长度不超过100，表达式运算合法且运算过程都在int内进行。 代码： 12345678910111213141516171">
+<meta property="og:type" content="article">
+<meta property="og:title" content="表达式计算">
+<meta property="og:url" content="https://shawnpan1999.github.io/sundries/2020/01/29/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%A1%E7%AE%97/index.html">
 <meta property="og:site_name" content="Shawn Pan">
-<meta property="og:description" content="学习使我快乐">
+<meta property="og:description" content="问题描述 　　输入一个只包含加减乖除和括号的合法表达式，求表达式的值。其中除表示整除。 输入格式 　　输入一行，包含一个表达式。 输出格式 　　输出这个表达式的值。 样例输入 ​        1-2+3*(4-5) 样例输出 ​        -4 数据规模和约定 　　表达式长度不超过100，表达式运算合法且运算过程都在int内进行。 代码： 12345678910111213141516171">
+<meta property="article:published_time" content="2020-01-29T15:14:50.000Z">
+<meta property="article:modified_time" content="2020-01-29T15:16:08.724Z">
 <meta property="article:author" content="Shawn Pan">
 <meta name="twitter:card" content="summary">
 
@@ -114,13 +116,13 @@
 
 
 
-  <link rel="canonical" href="https://shawnpan1999.github.io/sundries/"/>
+  <link rel="canonical" href="https://shawnpan1999.github.io/sundries/2020/01/29/表达式计算/"/>
 
 
 
 
 
-  <title>Shawn Pan</title>
+  <title>表达式计算 | Shawn Pan</title>
   
 
 
@@ -139,8 +141,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -223,9 +224,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -255,9 +256,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/sundries/2020/01/29/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%A1%E7%AE%97/" itemprop="url">表达式计算</a></h1>
+          <h1 class="post-title" itemprop="name headline">表达式计算</h1>
         
 
         <div class="post-meta">
@@ -329,9 +328,7 @@
       
 
       
-        
-          
-            <p>问题描述</p>
+        <p>问题描述</p>
 <p>　　输入一个只包含加减乖除和括号的合法表达式，求表达式的值。其中除表示整除。</p>
 <p>输入格式</p>
 <p>　　输入一行，包含一个表达式。</p>
@@ -347,8 +344,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Boolean <span class="title">isNextNum</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (str.charAt(<span class="number">0</span>) &lt;= <span class="string">'9'</span> &amp;&amp; str.charAt(<span class="number">0</span>) &gt;= <span class="string">'0'</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Boolean <span class="title">isNextOp</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (str.charAt(<span class="number">0</span>) == <span class="string">'+'</span> || str.charAt(<span class="number">0</span>) == <span class="string">'-'</span> || str.charAt(<span class="number">0</span>) == <span class="string">'*'</span> || str.charAt(<span class="number">0</span>) == <span class="string">'/'</span> || str.charAt(<span class="number">0</span>) == <span class="string">'#'</span> || str.charAt(<span class="number">0</span>) == <span class="string">'('</span> || str.charAt(<span class="number">0</span>) == <span class="string">')'</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getNextNum</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> res, flag = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(flag &lt; str.length() &amp;&amp; str.charAt(flag) &lt;= <span class="string">'9'</span> &amp;&amp; str.charAt(flag) &gt;= <span class="string">'0'</span>) &#123;</span><br><span class="line">			flag++;</span><br><span class="line">		&#125;</span><br><span class="line">		res = Integer.parseInt(str.substring(<span class="number">0</span>, flag));</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">char</span> op, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span> (op == <span class="string">'+'</span>) &#123;</span><br><span class="line">			res = a + b;</span><br><span class="line">		&#125; <span class="keyword">else</span></span><br><span class="line">		<span class="keyword">if</span> (op == <span class="string">'-'</span>) &#123;</span><br><span class="line">			res = a - b;</span><br><span class="line">		&#125; <span class="keyword">else</span></span><br><span class="line">		<span class="keyword">if</span> (op == <span class="string">'*'</span>) &#123;</span><br><span class="line">			res = a * b;</span><br><span class="line">		&#125; <span class="keyword">else</span></span><br><span class="line">		<span class="keyword">if</span> (op == <span class="string">'/'</span>) &#123;</span><br><span class="line">			res = a / b;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Boolean <span class="title">higher</span><span class="params">(<span class="keyword">char</span> a, <span class="keyword">char</span> b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (a == <span class="string">'#'</span> &amp;&amp; b == <span class="string">'#'</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		<span class="keyword">if</span> (a == <span class="string">'('</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		<span class="keyword">if</span> (a == <span class="string">')'</span> &amp;&amp; b == <span class="string">'('</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		<span class="keyword">if</span> (a == <span class="string">'*'</span> || a == <span class="string">'/'</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (b == <span class="string">'+'</span> || b == <span class="string">'-'</span> || b == <span class="string">'#'</span> || b == <span class="string">'('</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (a == <span class="string">'+'</span> || a == <span class="string">'-'</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (b == <span class="string">'#'</span> || b == <span class="string">'('</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> t, n1, n2;</span><br><span class="line">		<span class="keyword">char</span> op;</span><br><span class="line">		Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		String a;</span><br><span class="line">		a = scan.next();</span><br><span class="line">		a = a.concat(<span class="string">"#"</span>);</span><br><span class="line">		Stack&lt;Integer&gt; st_num = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">		Stack&lt;Character&gt; st_op = <span class="keyword">new</span> Stack&lt;Character&gt;();</span><br><span class="line">		st_op.push(<span class="string">'#'</span>);</span><br><span class="line">		<span class="keyword">while</span>(a.length() != <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (isNextNum(a)) &#123;	<span class="comment">//下一个是操作数</span></span><br><span class="line">				t = getNextNum(a);</span><br><span class="line">				st_num.push(t);</span><br><span class="line">				a = a.substring(Integer.toString(t).length());</span><br><span class="line">			&#125; <span class="keyword">else</span></span><br><span class="line">			<span class="keyword">if</span> (isNextOp(a)) &#123;	<span class="comment">//下一个是运算符</span></span><br><span class="line">				<span class="keyword">if</span> (higher(a.charAt(<span class="number">0</span>), st_op.peek())) &#123;	<span class="comment">//比较优先级</span></span><br><span class="line">					<span class="keyword">if</span> (a.charAt(<span class="number">0</span>) == <span class="string">'#'</span> &amp;&amp; st_op.peek() == <span class="string">'#'</span>) &#123;</span><br><span class="line">						st_op.pop();</span><br><span class="line">					&#125; <span class="keyword">else</span> <span class="keyword">if</span> (a.charAt(<span class="number">0</span>) == <span class="string">')'</span> &amp;&amp; st_op.peek() == <span class="string">'('</span>) &#123;</span><br><span class="line">						st_op.pop();</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">						st_op.push(a.charAt(<span class="number">0</span>));</span><br><span class="line">					&#125;</span><br><span class="line">					a = a.substring(<span class="number">1</span>);</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					n1 = st_num.pop();</span><br><span class="line">					n2 = st_num.pop();</span><br><span class="line">					op = st_op.pop();</span><br><span class="line">					st_num.push(calculate(n2, op, n1));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; </span><br><span class="line">		&#125;</span><br><span class="line">		System.out.print(st_num.pop());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-          
-        
       
     </div>
     
@@ -365,166 +360,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shawnpan1999.github.io/sundries/sundries/2020/01/28/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Shawn Pan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/sundries/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shawn Pan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/sundries/2020/01/28/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-28T12:44:16+08:00">
-                2020-01-28
-              </time>
+              <a href="/sundries/2020/01/28/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/sundries/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -534,10 +391,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -545,6 +403,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -754,6 +616,10 @@
   
 
   
+  <script type="text/javascript" src="/sundries/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/sundries/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
