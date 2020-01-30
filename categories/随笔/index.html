@@ -94,7 +94,7 @@
     root: '/sundries/',
     scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -242,9 +242,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/sundries/2020/01/28/hello-world/" itemprop="url">
+            <a class="post-title-link" href="/sundries/hello-world/" itemprop="url">
               
-                <span itemprop="name">Hello World</span>
+                <span itemprop="name">第一篇文章</span>
               
             </a>
         
@@ -252,9 +252,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2020-01-28T12:44:16+08:00"
-              content="2020-01-28" >
-          01-28
+              datetime="2020-01-29T12:44:16+08:00"
+              content="2020-01-29" >
+          01-29
         </time>
       </div>
 
@@ -319,8 +319,8 @@
               
                 <a href="/sundries/archives%7C%7C%20archive">
               
-                  <span class="site-state-item-count">2</span>
-                  <span class="site-state-item-name">日志</span>
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">文章</span>
                 </a>
               </div>
             
@@ -329,10 +329,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">2</span>
+                <a href="/sundries/categories/index.html">
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -342,6 +342,22 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/shawnpan1999" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:shawnpan1999@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -371,7 +387,7 @@
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-star"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Shawn Pan</span>
 
@@ -379,7 +395,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -387,7 +403,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
 
 
 
@@ -407,6 +423,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     
@@ -526,6 +544,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'meoooKmUgklrwucYvud2KKKr-gzGzoHsz',
+        appKey: 'LRUNiXvuyzBExueggq80hfew',
+        placeholder: '我有一个好点子...',
+        avatar:'mp',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
