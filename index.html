@@ -94,7 +94,7 @@
     root: '/',
     scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -1033,6 +1033,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -1295,7 +1297,7 @@
     });
     new Valine({
         el: '#comments' ,
-        verify: false,
+        verify: true,
         notify: false,
         appId: 'meoooKmUgklrwucYvud2KKKr-gzGzoHsz',
         appKey: 'LRUNiXvuyzBExueggq80hfew',
