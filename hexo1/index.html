@@ -83,10 +83,12 @@
 <meta property="og:url" content="https://www.psw.life/hexo1/index.html">
 <meta property="og:site_name" content="潘浪浪">
 <meta property="og:description" content="本文记录搭建环境步骤以及可能遇到的错误解决方案。">
+<meta property="og:image" content="http://psw.life/imgCloud/img/image_2020-2-8_21-16-46.jpg">
 <meta property="article:published_time" content="2020-01-29T23:12:16.000Z">
-<meta property="article:modified_time" content="2020-02-02T15:08:11.912Z">
+<meta property="article:modified_time" content="2020-02-08T13:29:00.300Z">
 <meta property="article:author" content="Shawn Pan">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://psw.life/imgCloud/img/image_2020-2-8_21-16-46.jpg">
 
 
 
@@ -353,6 +355,13 @@
 <p><strong>解决方法：</strong></p>
 <p>控制面板 -&gt; 用户账户 -&gt; 管理 Windows 凭据 -&gt; 普通凭据</p>
 <p>找到 github.com ，更新一下用户名和密码即可。</p>
+<h3 id="侧边栏的-archives-文章页面链接乱码"><a href="#侧边栏的-archives-文章页面链接乱码" class="headerlink" title="侧边栏的 archives 文章页面链接乱码"></a>侧边栏的 archives 文章页面链接乱码</h3><p>如图：</p>
+<p><img src="http://psw.life/imgCloud/img/image_2020-2-8_21-16-46.jpg" alt=""></p>
+<p><strong>解决方法：</strong></p>
+<p>原因是因为主题配置中错误地把 <code>#archives: /archives|| archive</code> 中的 <code>||</code> 也转码了。</p>
+<p>打开 <code>blog\themes\next\layout\_macro\sidebar.swig</code> ，找到 <code>if theme.menu.archives</code> 然后做如下修改：</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if theme.menu.archives %&#125;</span><br><span class="line"><span class="deletion">-    &lt;a href="&#123;&#123; url_for(theme.menu.archives).split('||')[0] | trim &#125;&#125;"&gt;</span></span><br><span class="line"><span class="addition">+    &lt;a href="&#123;&#123; url_for(theme.menu.archives.split('||')[0])| trim &#125;&#125;"&gt;</span></span><br><span class="line">&#123;% else %&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -473,7 +482,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives%7C%7C%20archive">
+                <a href="/archives">
               
                   <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">文章</span>
@@ -537,7 +546,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境配置"><span class="nav-number">1.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可能遇到的坑以及解决方案"><span class="nav-number">2.</span> <span class="nav-text">可能遇到的坑以及解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#各种-command-not-found-不是内部或外部命令"><span class="nav-number">2.1.</span> <span class="nav-text">各种 command not found &#x2F; 不是内部或外部命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#permission-to-xxx-denied-to-yyy"><span class="nav-number">2.2.</span> <span class="nav-text">permission to xxx denied to yyy</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境配置"><span class="nav-number">1.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可能遇到的坑以及解决方案"><span class="nav-number">2.</span> <span class="nav-text">可能遇到的坑以及解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#各种-command-not-found-不是内部或外部命令"><span class="nav-number">2.1.</span> <span class="nav-text">各种 command not found &#x2F; 不是内部或外部命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#permission-to-xxx-denied-to-yyy"><span class="nav-number">2.2.</span> <span class="nav-text">permission to xxx denied to yyy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#侧边栏的-archives-文章页面链接乱码"><span class="nav-number">2.3.</span> <span class="nav-text">侧边栏的 archives 文章页面链接乱码</span></a></li></ol></li></ol></div>
             
 
           </div>
