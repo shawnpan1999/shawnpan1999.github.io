@@ -77,14 +77,14 @@
 
 
 
-<meta name="description" content="[TOC]">
+<meta name="description" content="菜鸟的 Java 学习笔记。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java学习笔记">
 <meta property="og:url" content="https://www.psw.life/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="潘浪浪">
-<meta property="og:description" content="[TOC]">
+<meta property="og:description" content="菜鸟的 Java 学习笔记。">
 <meta property="article:published_time" content="2020-02-13T14:29:27.000Z">
-<meta property="article:modified_time" content="2020-02-13T14:35:34.673Z">
+<meta property="article:modified_time" content="2020-02-15T13:38:24.175Z">
 <meta property="article:author" content="Shawn Pan">
 <meta name="twitter:card" content="summary">
 
@@ -338,9 +338,21 @@
       
 
       
-        <p>[TOC]</p>
+        <p>菜鸟的 Java 学习笔记。</p>
 <a id="more"></a> 
 
+<h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><p>接口 <code>interface</code> 是一种特殊的类，它一般只含有抽象的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note info"><p>接口内如果定义变量（一般不这么做），那么这个变量默认为常量 <code>public static final</code></p></div>
+
+<p><strong>实现一个接口</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">implements</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"cat eat"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"cat move"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>接口和抽象类的区别</strong>：</p>
+<p>一个类只能继承于一个抽象类，为了突破这种局限性，这个类可以实现多个接口</p>
 <h1 id="static、final、常量池"><a href="#static、final、常量池" class="headerlink" title="static、final、常量池"></a>static、final、常量池</h1><h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><h3 id="静态变量"><a href="#静态变量" class="headerlink" title="静态变量"></a>静态变量</h3><ul>
 <li>无需定义对象，是直接依赖于类而存在的</li>
 <li>通过实例对象更改静态变量的值会影响类和所有对象的变量值（即他们在内存中是同一个空间）</li>
@@ -398,7 +410,6 @@
 <p>通过new创建的对象，将被放在堆内存，不会被常量化。</p>
 <div class="note info"><p>栈内存：读取快、容量小</p>
 <p>堆内存：读取慢、容量大</p></div>
-
       
     </div>
     
@@ -578,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#static、final、常量池"><span class="nav-number">1.</span> <span class="nav-text">static、final、常量池</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#static"><span class="nav-number">1.1.</span> <span class="nav-text">static</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态变量"><span class="nav-number">1.1.1.</span> <span class="nav-text">静态变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">静态方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态代码块（常使代码混乱，不建议使用）"><span class="nav-number">1.1.3.</span> <span class="nav-text">静态代码块（常使代码混乱，不建议使用）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#final"><span class="nav-number">1.2.</span> <span class="nav-text">final</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#final-类"><span class="nav-number">1.2.1.</span> <span class="nav-text">final 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#final-方法"><span class="nav-number">1.2.2.</span> <span class="nav-text">final 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#final-变量"><span class="nav-number">1.2.3.</span> <span class="nav-text">final 变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量、常量池"><span class="nav-number">1.3.</span> <span class="nav-text">常量、常量池</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常量"><span class="nav-number">1.3.1.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量池（缓存）"><span class="nav-number">1.3.2.</span> <span class="nav-text">常量池（缓存）</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#接口"><span class="nav-number">1.</span> <span class="nav-text">接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#static、final、常量池"><span class="nav-number">2.</span> <span class="nav-text">static、final、常量池</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#static"><span class="nav-number">2.1.</span> <span class="nav-text">static</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态变量"><span class="nav-number">2.1.1.</span> <span class="nav-text">静态变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态方法"><span class="nav-number">2.1.2.</span> <span class="nav-text">静态方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态代码块（常使代码混乱，不建议使用）"><span class="nav-number">2.1.3.</span> <span class="nav-text">静态代码块（常使代码混乱，不建议使用）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#final"><span class="nav-number">2.2.</span> <span class="nav-text">final</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#final-类"><span class="nav-number">2.2.1.</span> <span class="nav-text">final 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#final-方法"><span class="nav-number">2.2.2.</span> <span class="nav-text">final 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#final-变量"><span class="nav-number">2.2.3.</span> <span class="nav-text">final 变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量、常量池"><span class="nav-number">2.3.</span> <span class="nav-text">常量、常量池</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常量"><span class="nav-number">2.3.1.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量池（缓存）"><span class="nav-number">2.3.2.</span> <span class="nav-text">常量池（缓存）</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
