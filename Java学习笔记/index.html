@@ -86,7 +86,7 @@
 <meta property="og:image" content="http://psw.life/imgCloud/img/BaiduShurufa_2020-2-23_14-50-50.jpg">
 <meta property="og:image" content="http://psw.life/imgCloud/img/image_202002231514.jpg">
 <meta property="article:published_time" content="2020-02-13T14:29:27.000Z">
-<meta property="article:modified_time" content="2020-02-25T09:48:26.010Z">
+<meta property="article:modified_time" content="2020-02-26T08:23:13.941Z">
 <meta property="article:author" content="Shawn Pan">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://psw.life/imgCloud/img/BaiduShurufa_2020-2-23_14-50-50.jpg">
@@ -603,7 +603,23 @@
 <li>每个元素的内容互不相同</li>
 </ul>
 <p>Set 接口的子类主要有三个：HashSet、TreeSet、LinkedHashSet：</p>
-<h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h3><h3 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h3><h3 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h3>
+<h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h3><p>基于散列函数的集合，<strong>无序</strong>，<strong>不支持同步</strong></p>
+<p>底层是基于 <code>HashMap</code> 实现的。</p>
+<p><strong>常用方法</strong></p>
+<p><code>add(a)</code> 添加元素 <code>a</code> (重复添加无效)</p>
+<p><code>clear()</code> 清除整个集合</p>
+<p><code>contains(a)</code> 判断集合中是否包含 <code>a</code> </p>
+<p><code>remove(a)</code> 删除一个元素 <code>a</code> </p>
+<p><code>size()</code> 返回集合大小</p>
+<p><code>retainAll(Set b)</code> 改变原集合，剔除 <code>b</code> 中没有的元素 (计算和 <code>b</code> 的交集)</p>
+<h3 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h3><p>基于树结构的集合，<strong>可排序</strong>，<strong>不支持同步</strong></p>
+<h3 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h3><p>基于散列函数和双向链表的集合，<strong>可排序</strong>，<strong>不支持同步</strong></p>
+<p>继承于 <code>HashSet</code> ，也是基于 <code>HashMap</code> 实现的。</p>
+<div class="note info"><p>在串行程序下，这些不支持同步的类可以安全使用。</p>
+<p>如果在多线程并发执行的情况下，可以使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Set s = Collections.synchronizedSet(<span class="keyword">new</span> HashSet(...));</span><br><span class="line">Set s = Collections.synchronizedSet(<span class="keyword">new</span> LinkedHashSet(...));</span><br></pre></td></tr></table></figure>
+
+<p>来获得一个支持同步的 <code>Set</code> 类。</p></div>
       
     </div>
     
