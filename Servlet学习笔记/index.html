@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="《Head First Servlets &amp; JSP》 这本书讲得真心不错。 之前刚开始着手项目时太过心急，直接上手 SpringBoot ，却对其执行过程没有丝毫了解。经过一顿思考，还是从 Servlet 学起。最可怕的事情莫过于，不知道代码怎么执行的，却能写出正确的代码…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Servlet 学习笔记">
+<meta property="og:url" content="https://www.psw.life/Servlet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="潘浪浪">
+<meta property="og:description" content="《Head First Servlets &amp; JSP》 这本书讲得真心不错。 之前刚开始着手项目时太过心急，直接上手 SpringBoot ，却对其执行过程没有丝毫了解。经过一顿思考，还是从 Servlet 学起。最可怕的事情莫过于，不知道代码怎么执行的，却能写出正确的代码…">
+<meta property="og:image" content="c:/Users/Actmin/AppData/Roaming/Typora/typora-user-images/image-20200402160544003.png">
+<meta property="og:image" content="c:/Users/Actmin/AppData/Roaming/Typora/typora-user-images/image-20200402170013956.png">
+<meta property="article:published_time" content="2020-04-03T09:07:17.000Z">
+<meta property="article:modified_time" content="2020-04-03T09:18:35.738Z">
+<meta property="article:author" content="Shawn Pan">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/Actmin/AppData/Roaming/Typora/typora-user-images/image-20200402160544003.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.psw.life/Servlet学习笔记/"/>
+
+
+
+
+
+  <title>Servlet 学习笔记 | 潘浪浪</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">潘浪浪</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.psw.life/Servlet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shawn Pan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.psw.life/imgCloud/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="潘浪浪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Servlet 学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-03T17:07:17+08:00">
+                2020-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Servlet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Servlet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>《Head First Servlets &amp; JSP》 这本书讲得真心不错。</p>
+<p>之前刚开始着手项目时太过心急，直接上手 SpringBoot ，却对其执行过程没有丝毫了解。经过一顿思考，还是从 Servlet 学起。最可怕的事情莫过于，不知道代码怎么执行的，却能写出正确的代码…</p>
+<a id="more"></a> 
+
+<h1 id="Servlet-请求与响应"><a href="#Servlet-请求与响应" class="headerlink" title="Servlet - 请求与响应"></a>Servlet - 请求与响应</h1><h2 id="请求-Request"><a href="#请求-Request" class="headerlink" title="请求 Request"></a>请求 Request</h2><h3 id="GET-amp-POST"><a href="#GET-amp-POST" class="headerlink" title="GET &amp; POST"></a>GET &amp; POST</h3><p>get 操作不应该对数据库进行改变，是幂等的；post 反之。</p>
+<h3 id="request-常用方法"><a href="#request-常用方法" class="headerlink" title="request 常用方法"></a>request 常用方法</h3><p><strong>得到一个请求参数：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">getParameter</span><span class="params">(String)</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>得到一组请求参数：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String[] getParameterValues(String)</span><br></pre></td></tr></table></figure>
+
+<p><strong>得到请求的方法：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">getMethod</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>得到某个头部信息：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">getHeader</span><span class="params">(String)</span>		<span class="comment">//得到头部(字符串型)</span></span></span><br><span class="line"><span class="function">String <span class="title">getIntHeader</span><span class="params">(String)</span>		<span class="comment">//得到整型头部</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>得到请求输入流 (一般针对 POST)：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">InputStream <span class="title">getInputStream</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="响应-Response"><a href="#响应-Response" class="headerlink" title="响应 Response"></a>响应 Response</h2><h3 id="response-常用方法"><a href="#response-常用方法" class="headerlink" title="response 常用方法"></a>response 常用方法</h3><p><strong>设置响应内容类型 (MIME类型)：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">setContentType(String);</span><br><span class="line"><span class="comment">/* 常用的 MIME 类型：</span></span><br><span class="line"><span class="comment"> * text/html</span></span><br><span class="line"><span class="comment"> * application/pdf</span></span><br><span class="line"><span class="comment"> * image/jpeg</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<p>内容类型主要告诉浏览器我要发回的响应体的类型，以便浏览器能够正确处理这些信息。</p>
+<p><strong>往响应内容中写东西：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//写字符串：</span></span><br><span class="line">PrintWriter writer = response.getWriter();</span><br><span class="line">writer.println(<span class="string">"&lt;html&gt;...&lt;/html&gt;"</span>);</span><br><span class="line"><span class="comment">//写字节：</span></span><br><span class="line">ServletOutputStream out = response.getOutputStream();</span><br><span class="line">out.write(aByteArray);</span><br></pre></td></tr></table></figure>
+
+<p>需要注意！写字符串用的是 <code>println()</code> ，写字节用的是 <code>write()</code> ！</p>
+<p><strong>设置响应首部：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setHeader(String, String)		<span class="comment">//有则覆盖，无则增加</span></span><br><span class="line">addHeader(String, String)		<span class="comment">//增加一个首部</span></span><br><span class="line">setIntHeader(String, <span class="keyword">int</span>)		<span class="comment">//增加一个整型的首部</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>重定向：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sendRedirect(String)</span><br></pre></td></tr></table></figure>
+
+<p>重定向的响应的状态码为 301；还有一个首部 “Location” ，对应的值为 URL。</p>
+<p><strong>请求分派：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实例化一个请求分派器</span></span><br><span class="line">RequestDispatcher view = request.getRequestDispatcher(<span class="string">"result.jsp"</span>);</span><br><span class="line"><span class="comment">//把请求和响应转交给分派器，由它分派给 jsp</span></span><br><span class="line">view.forward(request, response);</span><br></pre></td></tr></table></figure>
+
+<p>一般情况下，我们可以使用 <code>request.setAttribute(String, Object);</code> 在请求中添加参数 (可以是我们的 Model 处理的结果)，这样前端的 jsp 就能取用这些参数了。</p>
+<h1 id="Web-应用-属性与监听者"><a href="#Web-应用-属性与监听者" class="headerlink" title="Web 应用 - 属性与监听者"></a>Web 应用 - 属性与监听者</h1><h2 id="定义初始化参数"><a href="#定义初始化参数" class="headerlink" title="定义初始化参数"></a>定义初始化参数</h2><p><strong>有没有一种办法，能够把固定的数据 (如邮箱) 配置成参数，而不是硬编码到 servlet 中？</strong></p>
+<h3 id="servlet-初始化参数"><a href="#servlet-初始化参数" class="headerlink" title="servlet 初始化参数"></a>servlet 初始化参数</h3><p>定义 servlet 初始化参数，容器就会在 servlet 初始化时，把参数保存到 ServletConfig 对象中，这样整个 servlet 都能访问这个参数。</p>
+<p>在 <code>web.xml</code> 的 <code>&lt;servlet&gt;</code> 元素中添加 <code>&lt;init-param&gt;</code> 元素即可：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>adminEmail<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>shawnpan1999@gmail.com<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如此做，我便添加了一个名为 <code>adminEmail</code> ，值为 <code>shawnpan1999@gmail.com</code> 的初始化参数。</p>
+<p>这样一来，我就可以在 servlet 中通过以下代码来获得我的电子邮箱：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String email = getServletConfig().getInitParameter(<span class="string">"adminEmail"</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>那么容器是怎么把初始化参数交给 servlet 的呢？</strong></p>
+<p>首先，我们先看看容器在初始化一个 servlet 时，会发生什么：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig config)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.config = config;	<span class="comment">//把 config 交给 servlet 实例</span></span><br><span class="line">    <span class="keyword">this</span>.init();			<span class="comment">//调用我们自己重写的 init() 方法</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Servlet 有两个 init() 函数，一个是有参的，供容器调用；另一个是无参的，供我们重写。</p>
+<p>于是，容器在初始化一个 servlet 之前，会先创建一个 ServletConfig 对象，然后从 DD (deployment descriptor, 描述部署文件)，也就是我们的 <code>web.xml</code> 中读出这些参数，保存到 ServletConfig 对象中。之后将它作为参数，调用我们 servlet 的 <code>init(ServletConfig)</code> 方法，完成 servlet 的初始化并保存了这些初始化参数。</p>
+<img src="C:\Users\Actmin\AppData\Roaming\Typora\typora-user-images\image-20200402160544003.png" alt="image-20200402160544003" style="zoom:67%;" />
+
+<p>但是，通过这样的方法定义的初始化参数，只能在 servlet 中使用；如果想要让其在视图层使用，则可以用 <code>request.serAttribute()</code> 的方法给请求设置属性，把这些参数带到页面上。</p>
+<p>如果我要保存的是整个 Web 应用都需要访问到的参数 (如数据库的连接字符串等)，<strong>还有没有更简便、更”全局”的办法？</strong></p>
+<h3 id="上下文初始化参数"><a href="#上下文初始化参数" class="headerlink" title="上下文初始化参数"></a>上下文初始化参数</h3><p>上下文初始化参数和 servlet 初始化参数很类似，只是上下文初始化参数对整个项目应用都可访问。</p>
+<p>在 <code>web.xml</code> 中添加 <code>&lt;context-param&gt;</code> 元素即可：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>email<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>shawnpan1999@gmail.com<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是上下文初始化参数的作用域并不是某个 servlet，所以不需要嵌套在某个 <code>&lt;servlet&gt;</code> 标签中。</p>
+<p><strong>在 servlet 中获取上下文</strong>初始化参数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String email = getServletContext().getInitParameter(<span class="string">"email"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>（也可以<strong>在 ServletConfig 对象中获得上下文</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String email = getServletConfig().getServletContext().getInitParameter(<span class="string">"email"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这两条是等价的，因为 servlet 自身和 config 对象都有上下文的引用。</p>
+<p>如果想<strong>在 Model 层访问上下文</strong>的话，可以往 Model 传入我们的 ServletConfig，通过 ServletConfig 来 getServletContext。</p>
+<p><strong>上下文参数和 servlet 参数的对比：</strong></p>
+<p><code>Head First Servlets &amp; JSP</code> 一书中对这两种参数给出了很好的对比：</p>
+<img src="C:\Users\Actmin\AppData\Roaming\Typora\typora-user-images\image-20200402170013956.png" alt="image-20200402170013956" style="zoom: 80%;" />
+
+<p><strong>除此之外，上下文还可以做什么？</strong></p>
+<h2 id="上下文-Context"><a href="#上下文-Context" class="headerlink" title="上下文 Context"></a>上下文 Context</h2><h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><p><strong>获取初始化参数：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">getInitParameter</span><span class="params">(String)</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>获取属性：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Object <span class="title">getAttribute</span><span class="params">(String)</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>设置属性：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setAttribute</span><span class="params">(String)</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>移除属性：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeAttribute</span><span class="params">(String)</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="延申"><a href="#延申" class="headerlink" title="延申"></a>延申</h3><p>于是，我们可以通过上下文来保存我们的数据库连接字符串了。但是这样有一个问题，我们应该在何处建立数据库连接，并且最好还能将这个连接对象放在上下文中，以便整个 Web 应用都能使用它？要是可以在初始化上下文的时候连接数据库就好了。<strong>有没有什么办法能够监听初始化事件？</strong>（类似于面向切面编程 AOP）</p>
+<h2 id="监听者"><a href="#监听者" class="headerlink" title="监听者"></a>监听者</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5(DI)%E4%B8%8E%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC(IoC)/" rel="next" title="依赖注入(DI)与控制反转(IoC)">
+                <i class="fa fa-chevron-left"></i> 依赖注入(DI)与控制反转(IoC)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://www.psw.life/imgCloud/img/avatar.jpg"
+                alt="Shawn Pan" />
+            
+              <p class="site-author-name" itemprop="name">Shawn Pan</p>
+              <p class="site-description motion-element" itemprop="description">酱酱的六六好六六</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/shawnpan1999" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:shawnpan1999@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet-请求与响应"><span class="nav-number">1.</span> <span class="nav-text">Servlet - 请求与响应</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#请求-Request"><span class="nav-number">1.1.</span> <span class="nav-text">请求 Request</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GET-amp-POST"><span class="nav-number">1.1.1.</span> <span class="nav-text">GET &amp; POST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#request-常用方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">request 常用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#响应-Response"><span class="nav-number">1.2.</span> <span class="nav-text">响应 Response</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#response-常用方法"><span class="nav-number">1.2.1.</span> <span class="nav-text">response 常用方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-应用-属性与监听者"><span class="nav-number">2.</span> <span class="nav-text">Web 应用 - 属性与监听者</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义初始化参数"><span class="nav-number">2.1.</span> <span class="nav-text">定义初始化参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#servlet-初始化参数"><span class="nav-number">2.1.1.</span> <span class="nav-text">servlet 初始化参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上下文初始化参数"><span class="nav-number">2.1.2.</span> <span class="nav-text">上下文初始化参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上下文-Context"><span class="nav-number">2.2.</span> <span class="nav-text">上下文 Context</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法"><span class="nav-number">2.2.1.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#延申"><span class="nav-number">2.2.2.</span> <span class="nav-text">延申</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监听者"><span class="nav-number">2.3.</span> <span class="nav-text">监听者</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shawn Pan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="/js/src/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    new Valine({
+        lang: 'zh-cn',
+        admin_email: '填写博主邮箱',
+        el: '#comments' ,
+        appId: 'meoooKmUgklrwucYvud2KKKr-gzGzoHsz',
+        appKey: 'LRUNiXvuyzBExueggq80hfew',
+        emoticon_url: 'https://cloud.panjunwen.com/alu',
+        emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+        placeholder: '我有一个好点子...',
+  });
+  </script>
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
